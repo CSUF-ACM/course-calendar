@@ -2,6 +2,21 @@
 
 The goal of this project is to create an API so that a CSUF student could automatically add their weekly courses to their Google Calendar
 
+## The Project Team
+
+### Team Lead
+William Bui teamlead@csu.fullerton.edu
+#### Team Members
+  1. Member one
+  2. Member two
+  3. Member three
+
+## Project Technologies
+
+This project will use:
+  * Technology 1 + resource url
+  * Technology 2 + resource url
+
 ## How to start helping
 *Please make sure you have git installed on your computer before you begin to help. To install git, please visit [Git](https://git-scm.com/downloads)*
 
@@ -31,4 +46,4 @@ If the pull request is accepted, your branch will be merged with the master bran
 
 If you need some more help with git commands, please visit [Git Command Tutorial](https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html)
 
-If you have any questions or need more help, please contact the Project Lead {username@csu.fullerton.edu}
+If you have any questions or need more help, please contact the Project Lead, William Bui {username@csu.fullerton.edu}
