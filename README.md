@@ -5,7 +5,7 @@ The goal of this project is to create an API so that a CSUF student could automa
 ## The Project Team
 
 ### Team Lead
-William Bui teamlead@csu.fullerton.edu
+William Bui wqbui3@csu.fullerton.edu
 #### Team Members
   1. Member one
   2. Member two
@@ -46,4 +46,4 @@ If the pull request is accepted, your branch will be merged with the master bran
 
 If you need some more help with git commands, please visit [Git Command Tutorial](https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html)
 
-If you have any questions or need more help, please contact the Project Lead, William Bui {username@csu.fullerton.edu}
+If you have any questions or need more help, please contact the Project Lead, William Bui wqbui3@csu.fullerton.edu
