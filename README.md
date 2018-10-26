@@ -7,7 +7,7 @@ The goal of this project is to create an API so that a CSUF student could automa
 ### Team Lead
 William Bui wqbui3@csu.fullerton.edu
 #### Team Members
-  1. Bryan Ho
+  1. Bryan Ho bryankho@csu.fullerton.edu
   2. Member two
   3. Member three
 

@@ -11,6 +11,7 @@
     <button id="authorize_button" style="display: none;">Authorize</button>
     <button id="signout_button" style="display: none;">Sign Out</button>
     <button id="birthday_button" style="display: none;">Create Birthday Event</button>
+    <button id="course_button" style="display: none;">Sync Classes</button>
 
     <pre id="content"></pre>
 
@@ -31,6 +32,8 @@
       var signoutButton = document.getElementById('signout_button');
 
       var birthdayButton = document.getElementById('birthday_button');
+
+      var courseCalendar = document.getElementById('course_button');
       /**
        *  On load, called to load the auth2 library and API client library.
        */
@@ -57,6 +60,7 @@
           authorizeButton.onclick = handleAuthClick;
           signoutButton.onclick = handleSignoutClick;
           birthdayButton.onclick = createBirthdayEvent;
+          courseCalendar.onclick = syncCourses;
         });
       }
 
@@ -69,15 +73,23 @@
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
           birthdayButton.style.display = 'block';
-          sendBirthdayEvent();
+          courseCalendar.style.display = 'block';
           listUpcomingEvents();
         } else {
           authorizeButton.style.display = 'block';
           signoutButton.style.display = 'none';
           birthdayButton.style.display = 'none';
+          courseCalendar.style.display = 'none';
         }
       }
-
+      function createBirthdayEvent(event){
+        sendBirthdayEvent();
+        console.log("Created");
+      }
+      function syncCourses(event){
+        courseEvent();
+        console.log("Created");
+      }
       /**
        *  Sign in the user upon button click.
        */
@@ -106,8 +118,54 @@
 
       function sendBirthdayEvent()
       {
-        
+        // Refer to the JavaScript quickstart on how to setup the environment:
+        // https://developers.google.com/calendar/quickstart/js
+        // Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
+        // stored credentials.
+
+        var event = {
+          'summary': 'Calendar Birthday',
+          'description': 'Birthday! Birthday!',
+          'start': {
+            'dateTime': '2018-10-31T09:00:00',
+            'timeZone': 'America/Los_Angeles'
+          },
+          'end': {
+            'dateTime': '2018-10-31T17:00:00',
+            'timeZone': 'America/Los_Angeles'
+          },
+          "recurrence":[
+            "RRULE:FREQ=WEEKLY;UNTIL=20181231"
+          ],
+
+          
+        };
+        console.log(event);
+        var request = gapi.client.calendar.events.insert({
+          'calendarId': 'primary',
+          'resource': event
+        });
+
+        request.execute(function(event) {
+          appendPre('Event created: ' + event.htmlLink);
+        });
       }
+
+      function courseEvent()
+      {
+        var classEvents=[{"summary":"CPSC 240 - Comp Org & Assembly Lang","description":"CS 104 - Teaching Lab","start":{"dateTime":"2018-08-27T08:00:00","timeZone":"America/Los_Angeles"},"end":{"dateTime":"2018-08-27T09:50:00","timeZone":"America/Los_Angeles"},"recurrence":["RRULE:FREQ=WEEKLY;UNTIL=20181216"]},{"summary":"CPSC 240 - Comp Org & Assembly Lang","description":"CS 104 - Teaching Lab","start":{"dateTime":"2018-08-29T08:00:00","timeZone":"America/Los_Angeles"},"end":{"dateTime":"2018-08-29T09:50:00","timeZone":"America/Los_Angeles"},"recurrence":["RRULE:FREQ=WEEKLY;UNTIL=20181218"]},{"summary":"CPSC 311 - Tech Writing for Comp Sci","description":"CS 102B - Lecture Room","start":{"dateTime":"2018-08-28T14:30:00","timeZone":"America/Los_Angeles"},"end":{"dateTime":"2018-08-28T15:45:00","timeZone":"America/Los_Angeles"},"recurrence":["RRULE:FREQ=WEEKLY;UNTIL=20181217"]},{"summary":"CPSC 311 - Tech Writing for Comp Sci","description":"CS 102B - Lecture Room","start":{"dateTime":"2018-08-30T14:30:00","timeZone":"America/Los_Angeles"},"end":{"dateTime":"2018-08-30T15:45:00","timeZone":"America/Los_Angeles"},"recurrence":["RRULE:FREQ=WEEKLY;UNTIL=20181219"]},{"summary":"MATH 270B - Mathematical Structure II","description":"E 221 - Lecture Room","start":{"dateTime":"2018-08-27T11:30:00","timeZone":"America/Los_Angeles"},"end":{"dateTime":"2018-08-27T12:45:00","timeZone":"America/Los_Angeles"},"recurrence":["RRULE:FREQ=WEEKLY;UNTIL=20181216"]},{"summary":"MATH 270B - Mathematical Structure II","description":"E 221 - Lecture Room","start":{"dateTime":"2018-08-29T11:30:00","timeZone":"America/Los_Angeles"},"end":{"dateTime":"2018-08-29T12:45:00","timeZone":"America/Los_Angeles"},"recurrence":["RRULE:FREQ=WEEKLY;UNTIL=20181218"]},{"summary":"MATH 338 - Stat Appl to Natural Sci","description":"MH 514 - Lecture Room","start":{"dateTime":"2018-08-28T11:30:00","timeZone":"America/Los_Angeles"},"end":{"dateTime":"2018-08-28T12:45:00","timeZone":"America/Los_Angeles"},"recurrence":["RRULE:FREQ=WEEKLY;UNTIL=20181217"]},{"summary":"MATH 338 - Stat Appl to Natural Sci","description":"MH 514 - Lecture Room","start":{"dateTime":"2018-08-30T11:30:00","timeZone":"America/Los_Angeles"},"end":{"dateTime":"2018-08-30T12:45:00","timeZone":"America/Los_Angeles"},"recurrence":["RRULE:FREQ=WEEKLY;UNTIL=20181219"]},{"summary":"MATH 338 - Stat Appl to Natural Sci","description":"MH 501 - Computer Lab","start":{"dateTime":"2018-08-28T13:00:00","timeZone":"America/Los_Angeles"},"end":{"dateTime":"2018-08-28T13:50:00","timeZone":"America/Los_Angeles"},"recurrence":["RRULE:FREQ=WEEKLY;UNTIL=20181217"]},{"summary":"MATH 338 - Stat Appl to Natural Sci","description":"MH 501 - Computer Lab","start":{"dateTime":"2018-08-30T13:00:00","timeZone":"America/Los_Angeles"},"end":{"dateTime":"2018-08-30T13:50:00","timeZone":"America/Los_Angeles"},"recurrence":["RRULE:FREQ=WEEKLY;UNTIL=20181219"]},{"summary":"PHIL 320 - Contemporary Moral Issues","description":"LH 304 - Lecture Room","start":{"dateTime":"2018-08-28T08:30:00","timeZone":"America/Los_Angeles"},"end":{"dateTime":"2018-08-28T09:45:00","timeZone":"America/Los_Angeles"},"recurrence":["RRULE:FREQ=WEEKLY;UNTIL=20181217"]},{"summary":"PHIL 320 - Contemporary Moral Issues","description":"LH 304 - Lecture Room","start":{"dateTime":"2018-08-30T08:30:00","timeZone":"America/Los_Angeles"},"end":{"dateTime":"2018-08-30T09:45:00","timeZone":"America/Los_Angeles"},"recurrence":["RRULE:FREQ=WEEKLY;UNTIL=20181219"]}];
+        for(classEvent of classEvents){
+        var request = gapi.client.calendar.events.insert({
+          'calendarId': 'primary',
+          'resource': classEvent
+        });
+
+        request.execute(function(event) {
+          appendPre('Event created: ' + event.htmlLink);
+        });
+      }
+      }
+
 
       /**
        * Print the summary and start datetime/date of the next ten events in

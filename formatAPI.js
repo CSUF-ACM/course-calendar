@@ -12,43 +12,42 @@
 //
 //Format Information into Parameters
 
-function getTimeString(stime,etime)
+
+/* getTimeString(timepoint)
+	Input Pararmeters: 		"8:45PM"
+			   Output: 		"20:45:00"
+				-24 hour scheme
+*/
+function getTimeString(timePoint)
 {	
 	var timeString="";
-	var sHour = parseInt(stime.split(":")[0]);
-	var sMin  = stime.split(":")[1].substring(0,2);
-	var eHour = parseInt(etime.split(":")[0]);
-	var eMin  = etime.split(":")[1].substring(0,2);
+	var pHour = parseInt(timePoint.split(":")[0]);
+	var pMin  = timePoint.split(":")[1].substring(0,2);
 	
-	if(stime.search("PM") != -1)
+	if(timePoint.search("PM") != -1)
 	{
-		if(sHour!=12)
-			sHour+=12;
+		if(pHour!=12)
+			pHour+=12;
 		
-		timeString+=(sHour).toString();
+		timeString+=(pHour).toString();
 	}
 	else
-	{
-		timeString+="0" + (sHour).toString();
+	{	if(pHour<10)
+			timeString+="0" + (pHour).toString();
+		else
+			timeString+=(pHour).toString();
 	}
 
-	timeString+=":"+sMin+"-";
+	timeString+=":"+pMin+":00";
 
-	if(etime.search("PM") != -1)
-	{
-		if(eHour!=12)
-			eHour+=12;
-		timeString+=(eHour).toString();
-	}
-	else
-	{
-		timeString+="0" + (eHour).toString();
-	}
-	timeString+=":"+eMin;
-	
-	// console.log(timeString);
 	return timeString;
 }
+/* getDateString(date,day)
+	Input Pararmeters: 		"8/25/2018","Mo"
+			   Output: 		"2018-08-27"
+				-xxxx-xx-xx format
+				-Add two days to original date pointing to Monday 
+*/
 
 function getDateString(date,day)
 {
@@ -99,36 +98,38 @@ function getDateString(date,day)
 	return dateString;
 	
 }
-function parseDateEvent(classDate,classStartTime,classEndTime,classDay)
+
+/* parseDateEvent(classDate,classTime,classDay)
+	Input Pararmeters: 		"8/25/2018","8:45PM","Mo"
+			   Output: 		"2018-08-27T20:45-07:00"
+				-Combines two date and time string 
+				-Keep functions organized
+*/
+function parseDateEvent(classDate,classTime,classDay)
 {
 	
-	var timeEvent = getTimeString(classStartTime,classEndTime);
+	var timeEvent = getTimeString(classTime);
 	var dateEvent = getDateString(classDate,classDay);
 	return dateEvent+"T"+timeEvent;
 }
 
-	//2015-08-28T09:00:00-07:00
-	//"08/25/2018" , "Mo 8:00AM - 9:50AM"
-
-
 var classEvents=[];
 for(classEvent of classData){
-	
 	
 	var event={
 		"summary":classEvent["courseName"],
 		"description":classEvent["location"],
 
 		"start":{
-			"dateTime":parseDateEvent(classEvent["startDate"],classEvent["startTime"],classEvent["endTime"],classEvent["day"]),
+			"dateTime":parseDateEvent(classEvent["startDate"],classEvent["startTime"],classEvent["day"]),
 			"timeZone":"America/Los_Angeles"
 		},
 		"end":{
-			"dateTime":parseDateEvent(classEvent["endDate"],classEvent["startTime"],classEvent["endTime"],classEvent["day"]),
+			"dateTime":parseDateEvent(classEvent["startDate"],classEvent["endTime"],classEvent["day"]),
 			"timeZone":"America/Los_Angeles"
 		},
 		"recurrence":[
-			"RRULE:FREQ=WEEKLY;"
+			"RRULE:FREQ=WEEKLY;UNTIL="+getDateString(classEvent["endDate"],classEvent["day"]).replace(/-/g,"")
 		],
 	}
 	
@@ -137,4 +138,4 @@ for(classEvent of classData){
 console.log(classEvents);
 
 var jsonData = JSON.stringify(classEvents);
-console.log(jsonData);
+console.log((jsonData));
