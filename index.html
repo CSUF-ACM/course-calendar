@@ -10,6 +10,7 @@
     <!--Add buttons to initiate auth sequence and sign out-->
     <button id="authorize_button" style="display: none;">Authorize</button>
     <button id="signout_button" style="display: none;">Sign Out</button>
+    <button id="birthday_button" style="display: none;">Create Birthday Event</button>
 
     <pre id="content"></pre>
 
@@ -23,11 +24,13 @@
 
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
-      var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+      var SCOPES = "https://www.googleapis.com/auth/calendar";
 
       var authorizeButton = document.getElementById('authorize_button');
+
       var signoutButton = document.getElementById('signout_button');
 
+      var birthdayButton = document.getElementById('birthday_button');
       /**
        *  On load, called to load the auth2 library and API client library.
        */
@@ -53,6 +56,7 @@
           updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
           authorizeButton.onclick = handleAuthClick;
           signoutButton.onclick = handleSignoutClick;
+          birthdayButton.onclick = createBirthdayEvent;
         });
       }
 
@@ -64,10 +68,13 @@
         if (isSignedIn) {
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
+          birthdayButton.style.display = 'block';
+          sendBirthdayEvent();
           listUpcomingEvents();
         } else {
           authorizeButton.style.display = 'block';
           signoutButton.style.display = 'none';
+          birthdayButton.style.display = 'none';
         }
       }
 
@@ -95,6 +102,11 @@
         var pre = document.getElementById('content');
         var textContent = document.createTextNode(message + '\n');
         pre.appendChild(textContent);
+      }
+
+      function sendBirthdayEvent()
+      {
+        
       }
 
       /**

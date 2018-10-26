@@ -7,15 +7,15 @@ The goal of this project is to create an API so that a CSUF student could automa
 ### Team Lead
 William Bui wqbui3@csu.fullerton.edu
 #### Team Members
-  1. Member one
+  1. Bryan Ho
   2. Member two
   3. Member three
 
 ## Project Technologies
 
 This project will use:
-  * Technology 1 + resource url
-  * Technology 2 + resource url
+  * [Google Calendar API](https://developers.google.com/calendar/overview)
+  * [Google Chrome Extensions](https://developer.chrome.com/extensions/getstarted)
 
 ## How to start helping
 *Please make sure you have git installed on your computer before you begin to help. To install git, please visit [Git](https://git-scm.com/downloads)*
