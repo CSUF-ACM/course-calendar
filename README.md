@@ -1,6 +1,9 @@
 # CSUF Course Calendar
 
-The goal of this project is to create an service application for CSUF students that automatically syncs their weekly courses to their Google Calendar.
+The goal of this project is to prototype a service application for CSUF students that automatically syncs their weekly courses to their Google Calendar. 
+
+With respect to the privacy of information, this chrome extension will not be available in the store. However,
+it will be available for local hosting.
 
 ## The Project Team
 
@@ -16,3 +19,6 @@ William Bui wqbui3@csu.fullerton.edu
 This project will use:
   * [Google Calendar API](https://developers.google.com/calendar/overview)
   * [Google Chrome Extensions](https://developer.chrome.com/extensions/getstarted)
+
+## Procedure
+	1. 
