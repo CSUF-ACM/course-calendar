@@ -21,4 +21,4 @@ This project will use:
   * [Google Chrome Extensions](https://developer.chrome.com/extensions/getstarted)
 
 ## Procedure
-	1. 
+  1. 
