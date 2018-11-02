@@ -33,11 +33,20 @@ syncButton.onclick=syncCalendar;
 
 function signIn(event)
 {
+  authorizeButton.style.display='none';
+  introduction.style.display='none';
+  scrapeButton.style.display='block';
+  syncButton.style.display='block';
+  signOutButton.style.display='block';
 
 }
 function signOut(event)
 {
-
+  authorizeButton.style.display='block';
+  introduction.style.display='block';
+  scrapeButton.style.display='none';
+  syncButton.style.display='none';
+  signOutButton.style.display='none';
 }
 function scrapePage(event)
 {
