@@ -8,8 +8,8 @@ var classData=[];
 //   console.log(classData);
 // }
 // Client ID and API key from the Developer Console
-var CLIENT_ID = '886704628314-pjjp6r51o6snovr703kajis3j1prubm8.apps.googleusercontent.com';
-var API_KEY = 'AIzaSyClDkasPGtoXboIXVijK8E-beXjiYuh1HU';
+var CLIENT_ID = '**';
+var API_KEY = '**';
 
 // Array of API discovery doc URLs for APIs used by the quickstart
 var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
@@ -26,65 +26,24 @@ var signOutButton = document.getElementById('signout_button');
 var scrapeButton = document.getElementById('scrape_button');
 var syncButton = document.getElementById('sync_button');
 
+authorizeButton.onclick=signIn;
+signOutButton.onclick = signOut;
+scrapeButton.onclick=scrapePage;
+syncButton.onclick=syncCalendar;
 
-function handleClientLoad() {
-  gapi.load('client:auth2', initClient);
+function signIn(event)
+{
+
 }
+function signOut(event)
+{
 
-/**
- *  Initializes the API client library and sets up sign-in state
- *  listeners.
- */
-function initClient() {
-  gapi.client.init({
-    apiKey: API_KEY,
-    clientId: CLIENT_ID,
-    discoveryDocs: DISCOVERY_DOCS,
-    scope: SCOPES
-  }).then(function () {
-    // Listen for sign-in state changes.
-    gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-
-    // Handle the initial sign-in state.
-    updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-    authorizeButton.onclick = handleAuthClick;
-    signoutButton.onclick = handleSignoutClick;
-    // birthdayButton.onclick = createBirthdayEvent;
-    // courseCalendar.onclick = syncCourses;
-  });
 }
+function scrapePage(event)
+{
 
-/**
- *  Called when the signed in status changes, to update the UI
- *  appropriately. After a sign-in, the API is called.
- */
-function updateSigninStatus(isSignedIn) {
-  if (isSignedIn) {
-    authorizeButton.style.display = 'none';
-    introduction.style.dispaly = 'none';
-    signOutButton.style.display = 'block';
-    scrapeButton.style.display = 'block';
-    syncButton.style.display = 'block';
-    
-  } else {
-    authorizeButton.style.display = 'block';
-    introduction.style.dispaly = 'block';
-    signOutButton.style.display = 'none';
-    scrapeButton.style.display = 'none';
-    syncButton.style.display = 'none';
-  }
 }
+function syncCalendar(event)
+{
 
- /**
- *  Sign in the user upon button click.
- */
-function handleAuthClick(event) {
-  gapi.auth2.getAuthInstance().signIn();
-}
-
-/**
- *  Sign out the user upon button click.
- */
-function handleSignoutClick(event) {
-  gapi.auth2.getAuthInstance().signOut();
 }
