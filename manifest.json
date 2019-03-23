@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "CSUF Calendar",
+  "description": "Does Calendar stuff",
+
+  "version": "1",
+  "author": "CSUF ACM",
+  "browser_action": {
+    "default_icon": "menu/courseCal.png",
+    "default_title": "CSUF Course Calendar",
+    "default_popup": "index.html"
+  },
+
+  "permissions": ["activeTab"]
+}
