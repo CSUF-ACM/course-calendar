@@ -1,19 +1,23 @@
-var classData=[];
+// chrome.runtime.onInstalled.addListener(function() {
 
-chrome.runtime.onMessage.addListener(receiver);
-function receiver(request, sender, sendResponse)
-{
-	console.log(request);
-	classData=JSON.parse(request);
-	console.log(classData);
-}
+//     chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+//         chrome.declarativeContent.onPageChanged.addRules([{
+//             conditions: [new chrome.declarativeContent.PageStateMatcher({
+//                 pageUrl: {
+//                     hostEquals: 'mycsuf.fullerton.edu'
+//                 },
+//             })],
+//             actions: [new chrome.declarativeContent.ShowPageAction()]
+//         }]);
+//     });
+// });
 
-var CLIENT_ID = '886704628314-pjjp6r51o6snovr703kajis3j1prubm8.apps.googleusercontent.com';
-var API_KEY = 'AIzaSyClDkasPGtoXboIXVijK8E-beXjiYuh1HU';
-
-// Array of API discovery doc URLs for APIs used by the quickstart
-var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-
-// Authorization scopes required by the API; multiple scopes can be
-// included, separated by spaces.
-var SCOPES = "https://www.googleapis.com/auth/calendar";
+chrome.runtime.onMessage.addListener(
+    function(message, callback){
+        if(message == 'getData'){
+            chrome.tabs.executeScript({
+               file:"getData.js"
+            });
+        }
+    }
+    );

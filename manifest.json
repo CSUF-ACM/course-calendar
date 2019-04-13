@@ -1,15 +1,38 @@
 {
-  "manifest_version": 2,
-  "name": "CSUF Calendar",
-  "description": "Does Calendar stuff",
+    "name": "CSUF Student Calendar",
+    "version": "1.0",
+    "description": "Export your class schedule from your CSUF Student Portal",
+    "manifest_version": 2,
+    // "permissions": ["declarativeContent","storage", "activeTab"],
+    // "background":{
+    // 	"scripts": ["scripts/background.js"],
+    // 	"persistant": false
+    // },
+    // "page_action": {
+    // 	"default_popup": "popup.html",
+    //     "default_icon": {
+	   //      "16": "images/get_started16.png",
+	   //      "32": "images/get_started32.png",
+	   //      "48": "images/get_started48.png",
+	   //      "128": "images/get_started128.png"
+    //   }
+    // },
+    // "icons": {
+    //   "16": "images/get_started16.png",
+    //   "32": "images/get_started32.png",
+    //   "48": "images/get_started48.png",
+    //   "128": "images/get_started128.png"
+    // }
+    "content_scripts" : [
+      {
+        "matches": ["https://mycsuf.fullerton.edu/psp/pfulprd/EMPLOYEE/CFULPRD/c/SA_LEARNER_SERVICES.SSS_STUDENT_CENTER.GBL*"],
+        "js": ["scripts/ics.deps.min.js","scripts/ics.js","scripts/content.js"]
+      }
+    ],
 
-  "version": "1",
-  "author": "CSUF ACM",
-  "browser_action": {
-    "default_icon": "menu/courseCal.png",
-    "default_title": "CSUF Course Calendar",
-    "default_popup": "index.html"
-  },
+    "browser_action" : {
+      "default_popup": "popup.html",
+      "default_title": "CSUF Class Schedule"
+    }
 
-  "permissions": ["activeTab"]
-}
+ }
