@@ -2,18 +2,89 @@
   <html>
     <head>
       <style>
-        button {
-/*           height: 30px;
-          width: 30px;
-          outline: none; */
-
+        #getData {
+          -webkit-box-shadow:inset 0px 1px 0px 0px #97c4fe;
+          box-shadow:inset 0px 1px 0px 0px #97c4fe;
+          background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0));
+          background:-webkit-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+          background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+          background-color:#3d94f6;
+          -webkit-border-radius:4px;
+          border-radius:4px;
+          border:1px solid #337fed;
+          display:inline-block;
+          cursor:pointer;
+          color:#ffffff;
+          font-size:15px;
+          font-weight:bold;
+          padding:6px 23px;
+          text-decoration:none;
+          text-shadow:0px 1px 0px #1570cd;
+          position: relative;
+          left:50%;
+          transform: translateX(-50%);
         }
+
+        #getData:hover{
+          background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6));
+          background:-webkit-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+          background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+          background-color:#1e62d0;
+        }
+
+        #getData:disabled, #getData:disabled:hover{
+          color:#CCC;
+          background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #999), color-stop(1, #333));
+          background:-webkit-linear-gradient(top, #999 5%, #333 100%);
+          background:linear-gradient(to bottom, #999 5%, #333 100%);
+          background-color:#999;
+          border:1px solid #333;
+          -webkit-box-shadow:inset 0px 1px 0px 0px #999;
+          box-shadow:inset 0px 1px 0px 0px #999;
+          cursor: default;
+        }
+          .icon{
+          float: right;
+          
+        }
+        .notify{
+          border: 1px solid;
+          padding: 6px 15px;
+          border-radius: 4px;
+          margin: 4px 0;
+          text-align: center;
+          font-weight: bold;
+          transition-duration: 0.5s;
+          position: absolute;
+          right:10px;
+          bottom: 10px;
+        }
+        .notify.success{
+          color: darkgreen;
+          background-color: lightgreen;
+          border-color: darkgreen;
+        }
+        .notify.fail{
+          color: darkred;
+          background-color: pink;
+          border-color: darkred;
+        }
+
+        .hide{
+          transform: translateY(-50%);
+          opacity: 0;
+        }
+
         body{
-        	width:350px;
+        	width:280px;
+          padding: 10px;
         }
       </style>
     </head>
     <body>
+
+        <img class="icon" src="img/48.png" alt="">
+
       <h2>Instructions</h2>
       <ul>
         <li>Log Into Student Portal</li>
@@ -23,7 +94,10 @@
         <li>If applicable, select term and click <strong>Continue</strong></li>
         <li>In this view, you can now gather class data</li>
       </ul>
-      <button id="getData">GetData</button>
+      <button id="getData">Get Data</button>
+        <div class="notify success hide">&#9675;</div>
+        <div class="notify fail hide">&#10006;</div>
       <script src="scripts/popup.js"></script>
+
     </body>
   </html>

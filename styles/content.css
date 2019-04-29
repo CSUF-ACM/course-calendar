@@ -1,0 +1,40 @@
+#Download-Form{
+	width: 100%;
+	min-height: 100px;
+	margin-top: 10px;
+	font-size: 9pt;
+    background-color: rgb(245,248,250);
+    border: 1px solid grey;
+}
+
+#Download-Form h1{
+	font-size: 9pt;
+    padding: 0.25em 0.5em;
+    color: rgb(40,66,119);
+}
+
+#Download-Form fieldset{
+	display: flex;
+	flex-direction: column;
+	color:black;
+    border: 1px dashed grey;
+    margin: 12px;
+}
+#Download-Form fieldset label{
+	padding: 4px 0;
+}
+#Download-Form #Download-Btn{
+    font-size: 9pt;
+    margin: 0px 0 10px 11px;
+    border: 1px solid #d8a676;
+    border-radius: 2px;
+    background-color: #FAE6BF;
+    background: -webkit-gradient(linear, left top, left bottom, from(#FCF0DA), to(#FAE6BF));
+    width: 215px;
+    height: 24px;
+
+}
+
+#Download-Form #Download-Btn:hover{
+    background: #fad9a5;
+}

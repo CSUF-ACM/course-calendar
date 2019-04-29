@@ -1,38 +1,24 @@
 {
-    "name": "CSUF Student Calendar",
+    "name": "CSUF Course Calendar",
     "version": "1.0",
     "description": "Export your class schedule from your CSUF Student Portal",
     "manifest_version": 2,
-    // "permissions": ["declarativeContent","storage", "activeTab"],
-    // "background":{
-    // 	"scripts": ["scripts/background.js"],
-    // 	"persistant": false
-    // },
-    // "page_action": {
-    // 	"default_popup": "popup.html",
-    //     "default_icon": {
-	   //      "16": "images/get_started16.png",
-	   //      "32": "images/get_started32.png",
-	   //      "48": "images/get_started48.png",
-	   //      "128": "images/get_started128.png"
-    //   }
-    // },
-    // "icons": {
-    //   "16": "images/get_started16.png",
-    //   "32": "images/get_started32.png",
-    //   "48": "images/get_started48.png",
-    //   "128": "images/get_started128.png"
-    // }
+    "permissions":["tabs"],
     "content_scripts" : [
       {
         "matches": ["https://mycsuf.fullerton.edu/psp/pfulprd/EMPLOYEE/CFULPRD/c/SA_LEARNER_SERVICES.SSS_STUDENT_CENTER.GBL*"],
-        "js": ["scripts/ics.deps.min.js","scripts/ics.js","scripts/content.js"]
+        "js": ["scripts/ics.deps.min.js","scripts/ics.js","scripts/content.js"],
+        "run_at": "document_end"
       }
     ],
 
     "browser_action" : {
       "default_popup": "popup.html",
-      "default_title": "CSUF Class Schedule"
-    }
+      "default_title": "CSUF Course Calendar"
+    },
+    "web_accessible_resources": [ "styles/content.css" ],
+    "icons": { "16": "img/16.png",
+           "48": "img/48.png",
+          "128": "img/128.png" }
 
  }
