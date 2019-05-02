@@ -83,8 +83,8 @@ chrome.runtime.onMessage.addListener(function (message) {
 				let start = new Date(courseObj["Start/End Date"][0] + " " + courseObj['TimeStart']);
 				let end = new Date(courseObj["Start/End Date"][0] + " " + courseObj['TimeEnd']);
 
-				while (courseObj['Days'].indexOf(daysOfWeek[start.getDay()]) < 0) {
-					start.setDate(start.getDate() + 1);
+				while (courseObj['Days'].indexOf(daysOfWeek[start.getDay()]) < 0) {//while start day not in dayslist
+					start.setDate(start.getDate() + 1);//increment day
 				}
 				while (courseObj['Days'].indexOf(daysOfWeek[end.getDay()]) < 0) {
 					end.setDate(end.getDate() + 1);
@@ -185,6 +185,6 @@ chrome.runtime.onMessage.addListener(function (message) {
 
 		}
 	}
-
+	//end success/fail message to popup
 	chrome.runtime.sendMessage(reply);
 });

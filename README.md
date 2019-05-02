@@ -11,14 +11,15 @@ it will be available for local hosting.
 William Bui wqbui3@csu.fullerton.edu
 #### Team Members
   1. Bryan Ho bryankho@csu.fullerton.edu
-  2. Member two
-  3. Member three
+  2. BJ Warfield bjwarfield@csu.fullerton.edu
+  3. Steven Kha 
 
 ## Project Technologies
 
 This project will use:
   * [Google Calendar API](https://developers.google.com/calendar/overview)
   * [Google Chrome Extensions](https://developer.chrome.com/extensions/getstarted)
+  * [ics.js](https://github.com/nwcell/ics.js/)
 
 ## Procedure
   1. 
