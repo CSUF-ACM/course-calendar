@@ -1,53 +1,39 @@
-var classData=[];
+window.onload = function(){
 
-// chrome.runtime.onMessage.addListener(receiver);
-// function receiver(request, sender, sendResponse)
-// {
-//   console.log(request);
-//   classData=JSON.parse(request);
-//   console.log(classData);
-// }
+	let el_button = document.querySelector('#getData');
+	chrome.tabs.query( {currentWindow: true, active: true}, function(tabs){
+		console.log(tabs);
+	    if(!tabs[0].url.match(/https:\/\/mycsuf\.fullerton\.edu\/psp\/pfulprd\/EMPLOYEE\/CFULPRD\/c\/SA_LEARNER_SERVICES\.SSS_STUDENT_CENTER\.GBL[*]?/)){
+	        el_button.disabled = true;
+	        console.log("disabled");
+	    }
+	});
 
-// chrome.identity.getAuthToken({ 'interactive': false }, function(token) {
-//   // Use the token.
-// });
-// chrome.identity.removeCachedAuthToken(object details, function callback)
-// {
-  
-// }
-var authorizeButton = document.getElementById('authorize_button');
-var introduction = document.getElementById('intro_text');
-var signOutButton = document.getElementById('signout_button');
-var scrapeButton = document.getElementById('scrape_button');
-var syncButton = document.getElementById('sync_button');
+	//add click listener for button to send message
+	document.querySelector('#getData').onclick = function(element){
+		let msg = {
+			txt : "getData"
+		};
+		chrome.tabs.query({currentWindow: true, active: true},
+			function(tabs){
+				chrome.tabs.sendMessage(tabs[0].id, msg);
+			});
 
-authorizeButton.onclick=signIn;
-signOutButton.onclick = signOut;
-scrapeButton.onclick=scrapePage;
-syncButton.onclick=syncCalendar;
+	}
 
-function signIn(event)
-{
-  authorizeButton.style.display='none';
-  introduction.style.display='none';
-  scrapeButton.style.display='block';
-  syncButton.style.display='block';
-  signOutButton.style.display='block';
+	//succes/fail notifications
+	let el_fail = document.querySelector(".fail");
+	let el_success = document.querySelector(".success");
 
-}
-function signOut(event)
-{
-  authorizeButton.style.display='block';
-  introduction.style.display='block';
-  scrapeButton.style.display='none';
-  syncButton.style.display='none';
-  signOutButton.style.display='none';
-}
-function scrapePage(event)
-{
+	chrome.runtime.onMessage.addListener(function(message){
+		if(message.txt == "success"){
+			el_success.classList.remove("hide");
+			setTimeout(function(){el_success.classList.add("hide");},2500);
+		}else if(message.txt == "fail"){
+			el_fail.classList.remove("hide");
+			setTimeout(function(){el_fail.classList.add("hide");},2500);
+		}
+	});
 
-}
-function syncCalendar(event)
-{
 
-}
+};
